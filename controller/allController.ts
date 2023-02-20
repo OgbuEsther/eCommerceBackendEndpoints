@@ -98,7 +98,7 @@ router.post("/createProduct", async (req: Request, res: Response) => {
   try {
     const { title, desc, price, category, quantity, status } = req.body;
 
-    const creating = await ProductsModel.create({
+    const creating = await productModels.create({
       title,
       desc,
       price,
@@ -126,15 +126,15 @@ router.patch(
       const { qty } = req.body;
 
       // const getUser = await UserModel.findById(req.params.userID);
-      const getProducts = await ProductsModel.findById(req.params.productID);
+      const getProducts = await productModels.findById(req.params.productID);
       console.log(getProducts);
 
       if (getProducts!.quantity == 0) {
-        await ProductsModel.findByIdAndUpdate(getProducts!._id!, {
+        await productModels.findByIdAndUpdate(getProducts!._id!, {
           status: false,
         });
       } else {
-        await ProductsModel.findByIdAndUpdate(getProducts!._id!, {
+        await productModels.findByIdAndUpdate(getProducts!._id!, {
           quantity: getProducts?.quantity! - qty,
         });
       }
