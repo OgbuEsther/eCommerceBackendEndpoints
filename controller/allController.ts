@@ -118,7 +118,7 @@ router.post("/createProduct", async (req: Request, res: Response) => {
   }
 });
 
-//puschasing product
+//purchasing product
 router.patch(
   "/purchaseProduct/:productID",
   async (req: Request, res: Response) => {
