@@ -44,3 +44,26 @@ router.post("/register", async (req: Request, res: Response) => {
     });
   }
 });
+
+//login user
+router.post("/login", async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+
+    const loginUser = await UserModel.findOne({ email });
+    if (loginUser) {
+      return res.status(200).json({
+        message: "success",
+        data: loginUser,
+      });
+    } else {
+      return res.status(200).json({
+        message: "user not found",
+      });
+    }
+  } catch (error) {
+    return res.status(404).json({
+      message: "could not create user",
+    });
+  }
+});
