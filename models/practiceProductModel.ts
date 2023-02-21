@@ -11,23 +11,28 @@ interface Iprod {
 
 interface Product extends Iprod, mongoose.Document {}
 
-const ProductSchema = new mongoose.Schema({
-  title: {
-    type: String,
+const ProductSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    price: {
+      type: Number,
+    },
+    quantity: {
+      type: Number,
+    },
+    category: {
+      type: String,
+    },
+    status: {
+      type: Boolean,
+    },
   },
-  description: {
-    type: String,
-  },
-  price: {
-    type: Number,
-  },
-  quantity: {
-    type: Number,
-  },
-  category: {
-    type: String,
-  },
-  status: {
-    type: Boolean,
-  },
-});
+  { timestamps: true }
+);
+
+export default mongoose.model<Product>("MyProducts", ProductSchema);
