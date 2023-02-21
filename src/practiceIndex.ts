@@ -20,3 +20,7 @@ mongoose
   .catch((err) => {
     console.log(`error`, err);
   });
+
+app.listen(port, () => {
+  console.log(`server listening on port ${port}`);
+});
