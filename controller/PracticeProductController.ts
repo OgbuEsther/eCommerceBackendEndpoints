@@ -31,3 +31,30 @@ router.post("/api/product", async (req: Request, res: Response) => {
     });
   }
 });
+
+//purchasing product
+
+router.patch(
+  "/api/product/purchase/:productID",
+  async (req: Request, res: Response) => {
+    try {
+      const { qty } = req.body;
+
+      const getProducts = await productModels.findById(req.params.productID);
+
+      if (getProducts!.quantity == 0) {
+        await productModels.findByIdAndUpdate(getProducts!._id, {
+          status: false,
+        });
+      } else {
+        await productModels.findByIdAndUpdate(getProducts!._id, {
+          quantity: getProducts?.quantity! - qty,
+        });
+      }
+    } catch (error) {
+      res.status(404).json({
+        message: "an error occured",
+      });
+    }
+  }
+);
