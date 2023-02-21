@@ -21,3 +21,26 @@ router.get("/users", async (req: Request, res: Response) => {
     });
   }
 });
+
+//register a user
+
+router.post("/register", async (req: Request, res: Response) => {
+  try {
+    const { name, email, password } = req.body;
+
+    const user = await UserModel.create({
+      name,
+      email,
+      password,
+    });
+
+    return res.status(200).json({
+      message: "Success",
+      data: user,
+    });
+  } catch (error) {
+    return res.status(404).json({
+      message: "could not create user",
+    });
+  }
+});
