@@ -141,7 +141,7 @@ router.patch(
 
 //get all products
 
-router.get("/products", async (req: Request, res: Response) => {
+router.get("/allproducts", async (req: Request, res: Response) => {
   try {
     const getProducts = await productModels.find();
 
