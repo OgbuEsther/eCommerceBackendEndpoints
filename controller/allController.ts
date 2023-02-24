@@ -45,8 +45,6 @@ router.post("/register", async (req: Request, res: Response) => {
   try {
     const { name, email, password } = req.body;
 
-    // const salt = await bcrypt.genSalt(10);
-    // const hash = bcrypt.hash(password, salt);
     const createUser = await UserModel.create({
       name,
       email,
@@ -56,11 +54,6 @@ router.post("/register", async (req: Request, res: Response) => {
     return res.status(200).json({
       message: "success",
       data: createUser,
-      // token: jwt.sign(
-      // 	{ _id: createUser._id },
-      // 	"Ths-57aenrn-53q4yhnae-05q3ujn",
-      // 	{ expiresIn: "1d" },
-      // ),
     });
   } catch (err) {
     res.status(404).json({
