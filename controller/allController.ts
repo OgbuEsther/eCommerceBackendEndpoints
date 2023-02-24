@@ -146,4 +146,21 @@ router.patch(
   }
 );
 
+//get all products
+
+router.get("/products", async (req: Request, res: Response) => {
+  try {
+    const getProducts = await productModels.find();
+
+    return res.status(200).json({
+      messsage: "success",
+      data: getProducts,
+    });
+  } catch (error) {
+    res.status(404).json({
+      message: "an error occured",
+    });
+  }
+});
+
 export default router;
