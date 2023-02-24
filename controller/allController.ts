@@ -85,7 +85,7 @@ router.post("/login", async (req: Request, res: Response) => {
   }
 });
 
-// create produt
+// create product
 
 router.post("/createProduct", async (req: Request, res: Response) => {
   try {
@@ -146,7 +146,22 @@ router.get("/allproducts", async (req: Request, res: Response) => {
     const getProducts = await productModels.find();
 
     return res.status(200).json({
-      messsage: "success",
+      messsage: "gotten all products",
+      data: getProducts,
+    });
+  } catch (error) {
+    res.status(404).json({
+      message: "an error occured",
+    });
+  }
+});
+
+router.get("/allproducts/:id", async (req: Request, res: Response) => {
+  try {
+    const getProducts = await productModels.findById(req.params.id);
+
+    return res.status(200).json({
+      messsage: "gotten all products",
       data: getProducts,
     });
   } catch (error) {
